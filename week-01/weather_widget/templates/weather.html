@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <title>Weather widget</title>
+</head>
+<body>
+    <h1>Wanna know the weather outside?</h1>
+    <label for="city-select">Where are you?</label>
+    <select id="city-select">
+        <option value="">--Please choose a city--</option>
+        <option value="Budapest">Budapest</option>
+        <option value="London">London</option>
+        <option value="New York">New York</option>
+    </select>
+    <div id="weather-widget">
+        <div class="header">
+            <div class="main_info">
+                <h2>{{city}}</h2>
+                <p>{{description}}</p>
+            </div>
+            <div id="icon">
+                <img src={{icon_src}}>
+            </div>
+        </div>
+        <div class="details">
+            <p>{{temperature}}˚C</p>
+            <table>
+                <tr>
+                    <th>Details</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Feels like</td>
+                    <td class="center">{{temperature}}˚C</td>
+                </tr>
+                <tr>
+                    <td>Wind</td>
+                    <td class="center">{{wind}} m/s</td>
+                </tr>
+                <tr>
+                    <td>Humidity</td>
+                    <td class="center">{{humidity}}%</td>
+                </tr>
+                <tr>
+                    <td>Pressure</td>
+                    <td class="center">{{pressure}} hPa</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
