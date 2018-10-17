@@ -10,13 +10,11 @@
 </head>
 <body>
     <h1>Wanna know the weather outside?</h1>
-    <label for="city-select">Where are you?</label>
-    <select id="city-select">
-        <option value="">--Please choose a city--</option>
-        <option value="Budapest">Budapest</option>
-        <option value="London">London</option>
-        <option value="New York">New York</option>
-    </select>
+    <form id="select-city-form" action="http://127.0.0.1:5000/city" method="POST" enctype="application/json">
+        <label for="city">Where are you?</label>
+        <input type="text" id="city" name="city" placeholder="Enter your city">
+        <button type="submit">Send</button>
+    </form>
     <div id="weather-widget">
         <div class="header">
             <div class="main_info">
@@ -53,6 +51,5 @@
             </table>
         </div>
     </div>
-
 </body>
 </html>

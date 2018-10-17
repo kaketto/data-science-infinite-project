@@ -9,17 +9,21 @@ body {
   
 h1 {
     margin-top: 40px;
+    margin-bottom: 40px;
+}
+  
+#select-city-form {
     margin-bottom: 30px;
 }
   
-label, select {
-    margin-bottom: 10px;
+button {
+    background-color: #fdcb6e;
 }
-  
+
 #weather-widget {
     flex: 0 0 auto;
     width: 30%;
-    min-width: 270px;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -67,10 +71,10 @@ h2 {
 }
   
 .details p {
-    font-size: 60px;
+    font-size: 50px;
     align-self: center;
     padding: 10px;
-    padding-left: 10%;
+    padding-left: 2%;
     margin: 0%;
     width: 40%;
 }
