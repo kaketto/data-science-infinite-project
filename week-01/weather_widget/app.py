@@ -3,12 +3,16 @@ import numpy as np
 import requests as requests
 import json
 from flask import Flask, render_template, redirect, request
+import sys
+sys.path.insert(0, '/Users/kingaeniko/greenfox/data_science_infinite_project')
+import api_keys
+
 app = Flask(__name__)
 
 city_list_json = './city.list.json'
 df = pd.read_json(city_list_json)
 
-api_key = '03621b4c221f18cdd23317b7aa5152e8'
+api_key = api_keys.weather_api_key
 url = 'https://api.openweathermap.org/data/2.5/weather'
 icon_url = 'http://openweathermap.org/img/w/'
 
