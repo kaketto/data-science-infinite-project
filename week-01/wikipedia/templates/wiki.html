@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        li {
+            list-style-type: none;
+            background-color: #9AECDB;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        h3, p, a {
+            margin: 0px;
+            padding: 10px;
+        }
+    </style>
+    <title>Wiki search</title>
+</head>
+<body>
+    <h1>Wikipedia search</h1>
+    <form id="wiki-search-form" action="http://127.0.0.1:5000/search" method="POST" enctype="application/json">
+        <label for="search-term">What are you interested about?</label>
+        <input type="text" id="search-term" name="search-term" placeholder="Enter a search term">
+        <button type="submit">Send</button>
+    </form>
+    <div id="search-result">
+        <ul>
+            {% for index in range(number) %}
+            <li>
+                <h3>{{ result[1][index] }}</h3>
+                <p>{{ result[2][index] }}</p>
+                <a href="{{ result[3][index] }}">{{ result[3][index] }}</a><br>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
