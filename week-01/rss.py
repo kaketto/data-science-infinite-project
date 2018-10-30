@@ -1,36 +1,31 @@
 import bs4 as bs
 import requests as requests
 import pandas as pd
+import re
 
 response = requests.get("http://finlandtoday.fi/feed")
 print(response.status_code)
 soup = bs.BeautifulSoup(response.text, "xml")
 items = soup.find_all('item')
-tags = []
-news_list = []
-i = 2
 
-for item in items[0].children:
-    if item.name:
-        if item.name in tags:
-            tags.append(item.name + str(i))
-            i += 1
-        else:
-            tags.append(item.name)
+titles = []
+links = []
+dates = []
+creators = []
+categories = []
+descriptions = []
 
 for item in items:
-    news = {}
-    for child in item.children:
-        if child.name:
-            news[child.name] = child.text
-    news_list.append(news)
+    titles.append(item.title.text)
+    links.append(item.link.text)
+    dates.append(item.pubDate.text)
+    creators.append(item.creator.text)
+    article_categories = [child.text for child in item.children if child.name == "category"] 
+    categories.append(', '.join(article_categories))
+    description_p = "".join([re.split('<.?p>', child.string)[1] for child in item.children if child.name == "description"])
+    descriptions.append(description_p)
 
-df = pd.DataFrame(news_list, columns = tags)
-del df['category2']
-del df['category3']
-del df['category4']
-del df['category5']
-del df['category6']
-del df['comments7']
-df.to_csv('rss.csv')
+news = {'title': titles, 'link': links, 'publication date': dates, 'author': creators, 'categories': categories, 'description': descriptions}
+df = pd.DataFrame(news, columns = news.keys())
+df.to_csv('rss2.csv')
 print(df.head())
